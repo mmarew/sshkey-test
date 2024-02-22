@@ -1,0 +1,25 @@
+
+To connect to GitHub using SSH keys, you need to follow these general steps:
+1)Generate SSH Key: If you haven't already, generate an SSH key pair on your local machine.
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+This command will generate a new SSH key using the provided email.
+
+2) Add SSH Key to SSH Agent: Start the SSH agent and add your SSH private key to the SSH agent.
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+Replace id_rsa with the name of your private key if it's different.
+
+
+3) Add SSH Key to GitHub Account: Copy the SSH public key to your clipboard.
+cat ~/.ssh/id_rsa.pub
+Then, go to your GitHub account settings, find the SSH and GPG keys section, and add the SSH key.
+
+4)Test SSH Connection: To test if your SSH connection is successful, run the following command:
+ssh -T git@github.com
+If successful, you'll see a message like:
+
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+5) Clone a Repository: Now you can clone repositories using SSH. For example:
+git clone git@github.com:user/repository.git
+Replace user with the GitHub username and repository with the name of the repository you want to clone.
+
